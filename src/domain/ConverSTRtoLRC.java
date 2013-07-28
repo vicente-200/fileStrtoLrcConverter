@@ -39,19 +39,7 @@ public class ConverSTRtoLRC {
                 Matcher matcher = regex.matcher(linea);
                 linea = matcher.replaceAll("");
 
-//                /*
-//                 * eg:
-//                 * converts  "00:01:00,130 --> 00:01:02,570" 
-//                 * into  "--> 00:01:02,570" 
-//                 * 
-//                 */
-//                pattern = "^[0-9]{1,}:[0-9]{1,}:[0-9]{1,}[.|,][0-9]{1,}\\s+";
-//                pattern = "-{1,}>\\s+[0-9]{1,}:[0-9]{1,}:[0-9]{1,}[.|,][0-9]{1,}\\s+";
-//                pattern = "-{1,}>\\s+";
-//                regex = Pattern.compile(pattern);
-//                matcher = regex.matcher(linea); 
-//                linea = matcher.replaceAll("");
-
+    
                 /*
                  * eg:
                  * converts  "--> 00:01:02,570" 
@@ -93,16 +81,12 @@ public class ConverSTRtoLRC {
                 matcher = regex.matcher(linea);
                 linea = matcher.replaceAll("");
 
-
-                pattern = "\\[[0-9]{1,}:[0-9]{1,}[.|,][0-9]{1,}\\][\\s+|.+]";
-                regex = Pattern.compile(pattern);
-                matcher = regex.matcher(linea);
-                linea = matcher.replaceFirst("");
-
-                pattern = "^.+(\\[)";
+                //removes the second timmestamp
+                pattern = "^(\\[.+\\]).+";
                 regex = Pattern.compile(pattern);
                 matcher = regex.matcher(linea);
                 linea = matcher.replaceFirst("$1");
+// 
 
  
                 pattern = "\\[[0-9]{1,}:[0-9]{1,}[.|,][0-9]{1,}\\]";
