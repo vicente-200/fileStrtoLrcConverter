@@ -41,7 +41,7 @@ public class mainGui extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("convertSTRtoLRC");
 
-        jtfInputPath.setText("C:\\Users\\klebber\\Desktop\\SUBTITULOS--------------------.srt");
+        jtfInputPath.setText("C:\\Users\\klebber\\Documents\\NetBeansProjects\\converSTRtoLRC\\TEST\\subtitulos.srt");
         jtfInputPath.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfInputPathActionPerformed(evt);
@@ -130,11 +130,12 @@ public class mainGui extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "No se ha podido convertir el archivo.\nDetalles del error:\n" + ex.getMessage());
             }
         }
-        
-          JOptionPane.showMessageDialog(this, "El archivo se ha creado" );
+
+        JOptionPane.showMessageDialog(this, "El archivo se ha creado");
 
     }//GEN-LAST:event_convertActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
