@@ -1,4 +1,4 @@
-   1
+﻿              1
        00:00:28,800 --> 00:00:34,460
     Cruel Akron bloody bastard I now spit on you
 
@@ -16,7 +16,7 @@ while the demons take the hero for their tragic game
 
 5
 00:00:52,130 --> 00:00:57,480
-Gods of earth save me from madness from these rites of total shame
+Gods of earth save me from madness  from these rites of total shame
 
 6
 00:00:57,480 --> 00:01:00,130
@@ -157,3 +157,4 @@ and sing the epic symphony
 40
 00:04:19,860 --> 00:04:43,770
 for the mighty and proud firelord
+

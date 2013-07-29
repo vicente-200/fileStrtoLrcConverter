@@ -40,8 +40,10 @@ public class mainGui extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("convertSTRtoLRC");
+        setMaximumSize(new java.awt.Dimension(570, 2147483647));
+        setMinimumSize(new java.awt.Dimension(570, 120));
 
-        jtfInputPath.setText("C:\\Users\\klebber\\Documents\\NetBeansProjects\\converSTRtoLRC\\TEST\\subtitulos.srt");
+        jtfInputPath.setText("C:\\Documents and Settings\\vvazquez\\Mis documentos\\NetBeansProjects\\fileStrtoLrcConverter\\TEST\\subtitulos.srt");
         jtfInputPath.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfInputPathActionPerformed(evt);

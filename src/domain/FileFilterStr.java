@@ -18,7 +18,7 @@ public class FileFilterStr extends FileFilter {
 
     @Override
     public boolean accept(File f) {
-        return f.isDirectory() || f.getName().toLowerCase().endsWith(".srt");
+        return f.isDirectory() || f.getName().toLowerCase().endsWith(Config.Ext.SRT.getExt());
     }
 
     //Set description for the type of file that should be display  
