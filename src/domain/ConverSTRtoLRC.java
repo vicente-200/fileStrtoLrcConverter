@@ -4,7 +4,7 @@
  */
 package domain;
 
-import gui.mainGui;
+import gui.MainGui;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  */
 public class ConverSTRtoLRC {
 
-   public  static mainGui mainGui;
+    public static MainGui mainGui;
 
     private static String leerArchivo(File file) throws IOException {
         FileReader fr = null;
@@ -134,14 +134,14 @@ public class ConverSTRtoLRC {
         System.out.println("newfilename = " + newName);
         File outputFile = new File(inputStrFile.getParent() + Config.Files.FileSeparator + newName);
 
-         Integer codConfirm = null;
-        if (outputFile.exists() ) {
-             codConfirm =  ConverSTRtoLRC.mainGui.askPane("Ya existe un archivo con el mismo nombre\ndesea sobre escribirlo?", "Info");
+        Integer codConfirm = null;
+        if (outputFile.exists()) {
+            codConfirm = ConverSTRtoLRC.mainGui.askPane("Already exists a file with the same name\nDo you want to overwrite it?", "Info");
         }
-        System.out.println("codConfirm ="+codConfirm);
-        if(codConfirm==0){
-            ConverSTRtoLRC.writeFile(input, outputFile);            
-        }else{
+        System.out.println("!!codConfirm =" + codConfirm);
+        if (codConfirm == null || codConfirm ==MainGui.CONFIRM_YES) {
+            ConverSTRtoLRC.writeFile(input, outputFile);
+        } else {
             throw new Exception("Has cancelado la operación");
         }
         System.out.println("writing into" + outputFile.getAbsolutePath());
@@ -168,11 +168,11 @@ public class ConverSTRtoLRC {
 
     }
 
-    public mainGui getMainGui() {
+    public MainGui getMainGui() {
         return mainGui;
     }
 
-    public void setMainGui(mainGui mainGui) {
+    public void setMainGui(MainGui mainGui) {
         this.mainGui = mainGui;
     }
 }
