@@ -33,9 +33,10 @@ public class ConverSTRtoLRC {
             br.readLine();
             //Obtenemos el contenido del archivo linea por linea
             while ((linea = br.readLine()) != null) {
-                String pattern;
+                String pattern; 
+                
                 //removes first blanck spaces in each line 
-                linea = ConverSTRtoLRC.replaceWithRegEx("^\\s+", linea, "");
+                linea = ConverSTRtoLRC.replaceWithRegEx(ComRegEx.FIRST_BLANCK_SP, linea, "");
 
                 /*
                  * eg:
@@ -83,7 +84,7 @@ public class ConverSTRtoLRC {
                 //remove blanck lines
 //                pattern = "^(?:[\t ]*(?:\r?\n|\r))+";
 //                pattern = ComRegEx.BLANCK_LINES;
-                linea = ConverSTRtoLRC.replaceWithRegEx(ComRegEx.BLANCK_LINES.getExt(), linea, "");
+                linea = ConverSTRtoLRC.replaceWithRegEx(ComRegEx.BLANCK_LINES, linea, "");
 
                 fileString += linea;
             }
@@ -120,10 +121,14 @@ public class ConverSTRtoLRC {
 
     public static void convertStrtoLRC(File inputStrFile) throws Exception {
         String input = ConverSTRtoLRC.leerArchivo(inputStrFile);
-//        String newName = inputStrFile.getName().replace("^.*\\" + Config.Ext.SRT.getExt() + "$", inputStrFile.getName());
-//        System.out.println("newfilename = "+newName);
-        //        inputStrFile.renameTo(new File(inputStrFile.getParent()+newName));
-        //        ConverSTRtoLRC.writeFile(input, inputStrFile);
+        String pattern = ComRegEx.FILE_EXT;
+        System.out.println("pattern =" + pattern);
+        System.out.println("fileName=" + inputStrFile.getName());
+        String newName = inputStrFile.getName().replaceAll(pattern, Config.Ext.LRC);
+        System.out.println("newfilename = " + newName);
+        File outputFile = new File(inputStrFile.getParent() + Config.Files.FileSeparator + newName);
+        System.out.println("writing into" + outputFile.getAbsolutePath());
+        ConverSTRtoLRC.writeFile(input, outputFile);
     }
 
     public static void writeFile(String content, File outputFile) throws IOException, Exception {
@@ -132,12 +137,7 @@ public class ConverSTRtoLRC {
         try {
             fileWriter = new FileWriter(outputFile);
             printWriter = new PrintWriter(fileWriter);
-
-            for (int i = 0; i < 10; i++) {
-                printWriter.println(content);
-            }
-
-
+            printWriter.println(content);
         } finally {
 
             // Nuevamente aprovechamos el finally para

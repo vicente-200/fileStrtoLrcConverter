@@ -7,16 +7,9 @@ package domain;
 /**
  * Common regular expresions
  */
-public enum ComRegEx {
+public class ComRegEx {
 
-    BLANCK_LINES("^(?:[\t ]*(?:\r?\n|\r))+"), SRT(".lrc");
-    private String ext;
-
-    private ComRegEx(String c) {
-        ext = c;
-    }
-
-    public String getExt() {
-        return ext;
-    }
+    public static String BLANCK_LINES = "^(?:[\t ]*(?:\r?\n|\r))+";
+    public static String FILE_EXT = "[.].+$";
+    public static String FIRST_BLANCK_SP = "^\\s+";   //match first blanck spaces in each line 
 }

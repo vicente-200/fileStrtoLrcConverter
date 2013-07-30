@@ -5,7 +5,12 @@
 package gui;
 
 import domain.FileFilterStr;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDropEvent;
 import java.io.File;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -22,6 +27,20 @@ public class mainGui extends javax.swing.JFrame {
      */
     public mainGui() {
         initComponents();
+        this.setDropTarget(new DropTarget() {
+            public synchronized void drop(DropTargetDropEvent evt) {
+                try {
+                    evt.acceptDrop(DnDConstants.ACTION_COPY);
+                    List<File> droppedFiles = (List<File>) evt.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
+                    for (File file : droppedFiles) {
+                        mainGui.this.jtfInputPath.setText(file.getAbsolutePath());
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        System.out.println("DROP!!");
     }
 
     /**
@@ -43,7 +62,7 @@ public class mainGui extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(570, 2147483647));
         setMinimumSize(new java.awt.Dimension(570, 120));
 
-        jtfInputPath.setText("C:\\Documents and Settings\\vvazquez\\Mis documentos\\NetBeansProjects\\fileStrtoLrcConverter\\TEST\\subtitulos.srt");
+        jtfInputPath.setText("C:\\Users\\klebber\\Documents\\NetBeansProjects\\fileStrtoLrcConverter\\TEST\\subtitulos.srt");
         jtfInputPath.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfInputPathActionPerformed(evt);
@@ -137,7 +156,6 @@ public class mainGui extends javax.swing.JFrame {
 
     }//GEN-LAST:event_convertActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */

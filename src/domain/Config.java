@@ -4,8 +4,6 @@
  */
 package domain;
 
-import java.util.HashMap;
-
 /**
  * Main aplication configuration
  *
@@ -16,19 +14,11 @@ public class Config {
     /**
      * File extensions
      */
-    public enum Ext {
+    public static class Ext {
 
-        LRC(".lrc"), SRT(".srt");
-        private String ext;
-
-        private Ext(String c) {
-            ext = c;
-        }
-
-        public String getExt() {
-            return ext;
-        }
+        public static String LRC = ".lrc", SRT = ".srt";
     }
-
-    
+    public static class Files{
+        public static String FileSeparator = System.getProperty("file.separator");
+    }
 }
