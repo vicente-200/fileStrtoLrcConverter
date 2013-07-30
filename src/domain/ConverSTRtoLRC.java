@@ -136,7 +136,7 @@ public class ConverSTRtoLRC {
 
         Integer codConfirm = null;
         if (outputFile.exists()) {
-            codConfirm = ConverSTRtoLRC.mainGui.askPane("Already exists a file with the same name\nDo you want to overwrite it?", "Info");
+            codConfirm = ConverSTRtoLRC.mainGui.askPane("Already exists a file with the same name\nDo you want to overwrite?", "Info");
         }
         System.out.println("!!codConfirm =" + codConfirm);
         if (codConfirm == null || codConfirm ==MainGui.CONFIRM_YES) {
