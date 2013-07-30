@@ -4,6 +4,7 @@
  */
 package domain;
 
+import gui.mainGui;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -15,9 +16,10 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author klebber
  */
 public class ConverSTRtoLRC {
+
+   public  static mainGui mainGui;
 
     private static String leerArchivo(File file) throws IOException {
         FileReader fr = null;
@@ -33,8 +35,8 @@ public class ConverSTRtoLRC {
             br.readLine();
             //Obtenemos el contenido del archivo linea por linea
             while ((linea = br.readLine()) != null) {
-                String pattern; 
-                
+                String pattern;
+
                 //removes first blanck spaces in each line 
                 linea = ConverSTRtoLRC.replaceWithRegEx(ComRegEx.FIRST_BLANCK_SP, linea, "");
 
@@ -120,15 +122,32 @@ public class ConverSTRtoLRC {
     }
 
     public static void convertStrtoLRC(File inputStrFile) throws Exception {
+        if (!inputStrFile.exists() || !inputStrFile.canRead()) {
+            throw new Exception("The file is not accesible.");
+        }
         String input = ConverSTRtoLRC.leerArchivo(inputStrFile);
+        System.out.println(input);
         String pattern = ComRegEx.FILE_EXT;
         System.out.println("pattern =" + pattern);
         System.out.println("fileName=" + inputStrFile.getName());
         String newName = inputStrFile.getName().replaceAll(pattern, Config.Ext.LRC);
         System.out.println("newfilename = " + newName);
         File outputFile = new File(inputStrFile.getParent() + Config.Files.FileSeparator + newName);
+
+         Integer codConfirm = null;
+        if (outputFile.exists() ) {
+             codConfirm =  ConverSTRtoLRC.mainGui.askPane("Ya existe un archivo con el mismo nombre\ndesea sobre escribirlo?", "Info");
+        }
+        System.out.println("codConfirm ="+codConfirm);
+        if(codConfirm==0){
+            ConverSTRtoLRC.writeFile(input, outputFile);            
+        }else{
+            throw new Exception("Has cancelado la operación");
+        }
         System.out.println("writing into" + outputFile.getAbsolutePath());
-        ConverSTRtoLRC.writeFile(input, outputFile);
+
+
+
     }
 
     public static void writeFile(String content, File outputFile) throws IOException, Exception {
@@ -140,8 +159,6 @@ public class ConverSTRtoLRC {
             printWriter.println(content);
         } finally {
 
-            // Nuevamente aprovechamos el finally para
-            // asegurarnos que se cierra el fichero.
             if (null != fileWriter) {
                 fileWriter.close();
             }
@@ -149,5 +166,13 @@ public class ConverSTRtoLRC {
 
         System.out.println("the file has been created");
 
+    }
+
+    public mainGui getMainGui() {
+        return mainGui;
+    }
+
+    public void setMainGui(mainGui mainGui) {
+        this.mainGui = mainGui;
     }
 }

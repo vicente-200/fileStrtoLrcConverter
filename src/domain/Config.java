@@ -6,8 +6,7 @@ package domain;
 
 /**
  * Main aplication configuration
- *
- * @author vvazquez
+ 
  */
 public class Config {
 

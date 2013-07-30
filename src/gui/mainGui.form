@@ -4,11 +4,8 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="convertSTRtoLRC"/>
-    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[570, 2147483647]"/>
-    </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[570, 120]"/>
+      <Dimension value="[640, 150]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -39,7 +36,7 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="jtfInputPath" pref="409" max="32767" attributes="0"/>
+                      <Component id="jtfInputPath" pref="466" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jbFileInput" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -66,9 +63,6 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="jtfInputPath">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="C:\u005cUsers\u005cklebber\u005cDocuments\u005cNetBeansProjects\u005cfileStrtoLrcConverter\u005cTEST\u005csubtitulos.srt" containsInvalidXMLChars="true"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfInputPathActionPerformed"/>
       </Events>

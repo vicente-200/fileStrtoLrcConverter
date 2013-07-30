@@ -4,15 +4,9 @@
  */
 package gui;
 
+import domain.ConverSTRtoLRC;
 import domain.FileFilterStr;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.dnd.DnDConstants;
-import java.awt.dnd.DropTarget;
-import java.awt.dnd.DropTargetDropEvent;
 import java.io.File;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -27,20 +21,7 @@ public class mainGui extends javax.swing.JFrame {
      */
     public mainGui() {
         initComponents();
-        this.setDropTarget(new DropTarget() {
-            public synchronized void drop(DropTargetDropEvent evt) {
-                try {
-                    evt.acceptDrop(DnDConstants.ACTION_COPY);
-                    List<File> droppedFiles = (List<File>) evt.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
-                    for (File file : droppedFiles) {
-                        mainGui.this.jtfInputPath.setText(file.getAbsolutePath());
-                    }
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
-        System.out.println("DROP!!");
+
     }
 
     /**
@@ -59,10 +40,8 @@ public class mainGui extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("convertSTRtoLRC");
-        setMaximumSize(new java.awt.Dimension(570, 2147483647));
-        setMinimumSize(new java.awt.Dimension(570, 120));
+        setMinimumSize(new java.awt.Dimension(640, 150));
 
-        jtfInputPath.setText("C:\\Users\\klebber\\Documents\\NetBeansProjects\\fileStrtoLrcConverter\\TEST\\subtitulos.srt");
         jtfInputPath.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfInputPathActionPerformed(evt);
@@ -98,7 +77,7 @@ public class mainGui extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(23, 23, 23)
-                        .addComponent(jtfInputPath, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                        .addComponent(jtfInputPath, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbFileInput)))
                 .addContainerGap())
@@ -139,22 +118,38 @@ public class mainGui extends javax.swing.JFrame {
 
     private void convertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_convertActionPerformed
         // TODO add your handling code here:
-        File file = new File(this.jtfInputPath.getText());
-        if (!file.exists() || !file.canRead()) {
-            JOptionPane.showMessageDialog(this, "El archivo no es accesible.");
-        } else {
-            try {
-                domain.ConverSTRtoLRC.convertStrtoLRC(file);
-                System.out.println("convertfile!!!");
-            } catch (Exception ex) {
-                Logger.getLogger(mainGui.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(this, "No se ha podido convertir el archivo.\nDetalles del error:\n" + ex.getMessage());
-            }
+        ConverSTRtoLRC.mainGui = this;
+        try {
+            File file = new File(this.jtfInputPath.getText());
+            domain.ConverSTRtoLRC.convertStrtoLRC(file);
+            JOptionPane.showMessageDialog(this, "The file was created");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error:\n" + ex.getMessage());
         }
 
-        JOptionPane.showMessageDialog(this, "El archivo se ha creado");
+
 
     }//GEN-LAST:event_convertActionPerformed
+
+    /**
+     *
+     * @param message
+     * @param title
+     * @param options
+     * @param defecto opcion por defecto
+     * @return an integer indicating the option chosen by the user, or CLOSED_OPTION if the user closed the dialog
+     */
+    public Integer askPane(String message, String title) {
+        int seleccion = JOptionPane.showOptionDialog(this,
+                message,
+                title,
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null, // null para icono por defecto.
+                null, // null para YES, NO y CANCEL
+                null);
+        return seleccion;
+    }
 
     /**
      * @param args the command line arguments

@@ -71,4 +71,15 @@
     nbproject/build-impl.xml file. 
 
     -->
+      
+<!--
+    <target name="-post-jar"> 
+        <echo file="${dist.dir}/run.bat">start javaw -jar converSTRtoLRC.jar</echo> 
+        <zip destfile="${dist.dir}/converSTRtoLRC.jar.zip" basedir="${dist.dir}" />
+    </target> -->
+    
+    <target name="-post-jar">
+        <echo file="${dist.dir}/run.bat">start javaw -jar converSTRtoLRC.jar</echo>
+        <zip destfile="${dist.dir}/converSTRtoLRC.zip" basedir="${dist.dir}" />
+    </target> 
 </project>

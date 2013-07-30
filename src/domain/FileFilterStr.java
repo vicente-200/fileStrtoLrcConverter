@@ -7,10 +7,7 @@ package domain;
 import java.io.File;
 import javax.swing.filechooser.FileFilter;
 
-/**
- *
- * @author klebber
- */
+ 
 public class FileFilterStr extends FileFilter {
     //Type of file that should be display in JFileChooser will be set here  
     //We choose to display only directory and text file 
