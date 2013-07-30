@@ -7,6 +7,8 @@ package gui;
 import domain.ConverSTRtoLRC;
 import domain.FileFilterStr;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -15,7 +17,8 @@ import javax.swing.JOptionPane;
  * @author klebber
  */
 public class mainGui extends javax.swing.JFrame {
-
+    public static int CONFIRM_YES = 0;
+    public static int CONFIRM_NO = 1;
     /**
      * Creates new form mainGui
      */
@@ -119,14 +122,15 @@ public class mainGui extends javax.swing.JFrame {
     private void convertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_convertActionPerformed
         // TODO add your handling code here:
         ConverSTRtoLRC.mainGui = this;
+//        try {
+        File file = new File(this.jtfInputPath.getText());
         try {
-            File file = new File(this.jtfInputPath.getText());
             domain.ConverSTRtoLRC.convertStrtoLRC(file);
             JOptionPane.showMessageDialog(this, "The file was created");
         } catch (Exception ex) {
+            Logger.getLogger(mainGui.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Error:\n" + ex.getMessage());
         }
-
 
 
     }//GEN-LAST:event_convertActionPerformed
@@ -137,7 +141,8 @@ public class mainGui extends javax.swing.JFrame {
      * @param title
      * @param options
      * @param defecto opcion por defecto
-     * @return an integer indicating the option chosen by the user, or CLOSED_OPTION if the user closed the dialog
+     * @return an integer indicating the option chosen by the user, or
+     * CLOSED_OPTION if the user closed the dialog
      */
     public Integer askPane(String message, String title) {
         int seleccion = JOptionPane.showOptionDialog(this,

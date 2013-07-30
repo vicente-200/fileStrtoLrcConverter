@@ -4,7 +4,7 @@
  */
 package domain;
 
-import gui.MainGui;
+import gui.mainGui;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  */
 public class ConverSTRtoLRC {
 
-    public static MainGui mainGui;
+    public static mainGui mainGui;
 
     private static String leerArchivo(File file) throws IOException {
         FileReader fr = null;
@@ -139,7 +139,7 @@ public class ConverSTRtoLRC {
             codConfirm = ConverSTRtoLRC.mainGui.askPane("Already exists a file with the same name\nDo you want to overwrite?", "Info");
         }
         System.out.println("!!codConfirm =" + codConfirm);
-        if (codConfirm == null || codConfirm ==MainGui.CONFIRM_YES) {
+        if (codConfirm == null || codConfirm ==mainGui.CONFIRM_YES) {
             ConverSTRtoLRC.writeFile(input, outputFile);
         } else {
             throw new Exception("Has cancelado la operación");
@@ -168,11 +168,11 @@ public class ConverSTRtoLRC {
 
     }
 
-    public MainGui getMainGui() {
+    public mainGui getMainGui() {
         return mainGui;
     }
 
-    public void setMainGui(MainGui mainGui) {
+    public void setMainGui(mainGui mainGui) {
         this.mainGui = mainGui;
     }
 }
